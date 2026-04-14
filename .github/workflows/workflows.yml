@@ -50,6 +50,7 @@ jobs:
                   "sudo mkdir -p /home/ec2-user/nginx/html",
                   "sudo mkdir -p /home/ec2-user/nginx/conf.d",
                   "sudo chown -R ec2-user:ec2-user /home/ec2-user/nginx",
+                  "sudo chmod 666 /home/ec2-user/nginx/html/index.html"
                   "aws s3 cp s3://${{ secrets.S3_BUCKET_NAME }}/conf.d/default.conf /home/ec2-user/nginx/conf.d/default.conf",
                   "aws s3 sync s3://${{ secrets.S3_BUCKET_NAME }}/html/ /home/ec2-user/nginx/html/ --delete",
                   "aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | sudo docker login --username AWS --password-stdin ${{ steps.login-ecr.outputs.registry }}",
